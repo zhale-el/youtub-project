@@ -1,13 +1,25 @@
-import React from "react";
-import Logo from "../../assets/images/YouTube-Logo.wine.svg";
-import { Menu } from "lucide-react";
+import React, { useState } from "react";
+import { RiMenuLine } from "react-icons/ri";
+import Button from "../../components/Button";
+import { RiVideoUploadLine } from "react-icons/ri";
+import { IoIosNotificationsOutline } from "react-icons/io";
+import { TbUserCircle } from "react-icons/tb";
+import { MdKeyboardVoice } from "react-icons/md";
+import { GoSearch } from "react-icons/go";
+
 const PageHeader = () => {
+  const [showFullWidthSearch, setShowFullWidthSearch] = useState(false);
+
   return (
-    <div className="flex gap-10 lg:gap-20 justify-between">
-      <div className="flex gap-4 items-center flex-shrink-0">
-        <button>
-          <Menu />
-        </button>
+    <div className="flex gap-10 lg:gap-20 justify-between pt-2 mb-6 mx-4">
+      <div
+        className={`gap-4 items-center flex-shrink-0 ${
+          showFullWidthSearch ? "hidden" : "flex"
+        }`}
+      >
+        <Button variant="ghost" size="icon">
+          <RiMenuLine />
+        </Button>
         <a href="/">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -40,8 +52,53 @@ const PageHeader = () => {
           </svg>
         </a>
       </div>
-      <div></div>
-      <div></div>
+
+      <form className="md:flex hidden gap-4 flex-grow justify-center">
+        <div className="flex flex-grow max-w-[600px] ">
+          <input
+            type="search"
+            placeholder="Search"
+            className="rounded-l-full border border-secondary-border shadow-inner shadow-secondary py-1 px-4 text-lg w-full focus:border-blue-500 outline-none"
+          />
+          <Button className="py-2 px-4 rounded-r-full border-secondary-border border border-l-0 flex-shrink-0">
+            <GoSearch />
+          </Button>
+        </div>
+        <Button type="button" size="icon" className="flex-shrink-0">
+          <MdKeyboardVoice />
+        </Button>
+      </form>
+
+      <div
+        className={`flex-shrink-0 md:gap-2 ${
+          showFullWidthSearch ? "hidden" : "flex"
+        }`}
+      >
+        <Button
+          size="icon"
+          variant="ghost"
+          className="md:hidden"
+          onClick={() => setShowFullWidthSearch(true)}
+        >
+          <GoSearch />
+        </Button>
+
+        <Button size="icon" variant="ghost" className="md:hidden">
+          <MdKeyboardVoice />
+        </Button>
+
+        <Button size="icon" variant="ghost">
+          <RiVideoUploadLine />
+        </Button>
+
+        <Button size="icon" variant="ghost">
+          <IoIosNotificationsOutline />
+        </Button>
+
+        <Button size="icon" variant="ghost">
+          <TbUserCircle />
+        </Button>
+      </div>
     </div>
   );
 };
