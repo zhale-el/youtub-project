@@ -6,6 +6,7 @@ import { IoIosNotificationsOutline } from "react-icons/io";
 import { TbUserCircle } from "react-icons/tb";
 import { MdKeyboardVoice } from "react-icons/md";
 import { GoSearch } from "react-icons/go";
+import { IoArrowBack } from "react-icons/io5";
 
 const PageHeader = () => {
   const [showFullWidthSearch, setShowFullWidthSearch] = useState(false);
@@ -53,7 +54,22 @@ const PageHeader = () => {
         </a>
       </div>
 
-      <form className="md:flex hidden gap-4 flex-grow justify-center">
+      <form
+        className={`gap-4 flex-grow justify-center ${
+          showFullWidthSearch ? "flex" : "hidden md:flex"
+        }`}
+      >
+        {showFullWidthSearch && (
+          <Button
+            onClick={() => setShowFullWidthSearch(false)}
+            type="button"
+            variant="ghost"
+            size="icon"
+            className="flex-shrink-0"
+          >
+            <IoArrowBack />
+          </Button>
+        )}
         <div className="flex flex-grow max-w-[600px] ">
           <input
             type="search"
